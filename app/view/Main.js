@@ -2,7 +2,8 @@ Ext.define('ProVita.view.Main', {
     extend: 'Ext.Carousel',
     xtype: 'main',
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+	'Ext.ux.mgd.tab.Sidebar'
     ],
     config: {
 	fullscreen: true,
@@ -10,8 +11,27 @@ Ext.define('ProVita.view.Main', {
 	    styleHtmlContent: true
 	},	
         items: [
-            {
-                title: 'Start',
+	    {
+		  xtype: 'tabsidebar',
+		  indicator: { // button to open and close the menu
+			text: 'Menu',
+			iconMask: true,
+			iconCls: 'action',
+			iconAlign: 'left',
+			width: '35%'
+		  },
+		  header: 'm-gd.com', //Header for the menu
+		  items: [ // items inside the menu
+			{
+			      text: 'Home'
+			},
+			{
+			      text: 'Imprint'
+			}
+		  ]
+	    },
+	    {
+			   title: 'Start',
                 scrollable: true,
 
                 items: {

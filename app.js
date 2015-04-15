@@ -9,12 +9,12 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
 */
-
 Ext.application({
     name: 'ProVita',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+	'Ext.ux.mgd.tab.Sidebar'
     ],
 
     views: [
