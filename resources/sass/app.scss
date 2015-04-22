@@ -1,3 +1,5 @@
+$base-color: #f6a800;
+
 // The following two lines import the default Sencha Touch theme. If you are building
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
@@ -8,20 +10,3 @@
 
 // Examples of using the icon mixin:
 // @include icon('user');
- // Button Indicator (to open and close the menu)
-$mgd-sidebar-indicator-height: 2.4rem;
-$mgd-sidebar-indicator-width: 4rem;
-$mgd-sidebar-indicator-color-1: lighten(#1e416c, 8%);
-$mgd-sidebar-indicator-color-2: darken(#1e416c, 8%);
-$mgd-sidebar-indicator-right-radius: 0.5rem;
-$mgd-sidebar-indicator-text-color: white;
-$mgd-sidebar-indicator-font-size: 0.8em;
-$mgd-sidebar-indicator-font-style: italic;
- // Sidebar Menu
-$mgd-sidebar-background: #EEE;
-$mgd-sidebar-divider: 1px solid #999;
-$mgd-sidebar-header-height: 2.9rem;
-$mgd-sidebar-header-color-1: darken(#999, 4%);
-$mgd-sidebar-header-color-2: lighten(#CCC, 4%);
-
-@import 'tabsidebar';

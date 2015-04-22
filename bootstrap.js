@@ -657,7 +657,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "ProVita.view.Main": []
+  "ProVita.view.Info": [],
+  "ProVita.view.Main": [],
+  "ProVita.view.Quiz": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1381,7 +1383,13 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "ProVita.view.Info": [
+    "widget.main"
+  ],
   "ProVita.view.Main": [
+    "widget.mainPage"
+  ],
+  "ProVita.view.Quiz": [
     "widget.main"
   ]
 });

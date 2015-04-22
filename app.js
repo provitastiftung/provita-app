@@ -13,12 +13,13 @@ Ext.application({
     name: 'ProVita',
 
     requires: [
-        'Ext.MessageBox',
-	'Ext.ux.mgd.tab.Sidebar'
+        'Ext.MessageBox'
     ],
 
     views: [
-        'Main'
+        'Main',
+	'Info',
+	'Quiz'
     ],
 
     icon: {
