@@ -1,0 +1,32 @@
+{
+    "success": true,
+    "quizfragen": [
+        {
+            "id": "1",
+            "frage": "Das schlagende Herz eines Ungeborenen sieht man im Ultraschall ab der wievielten Woche einer Schwangerschaft?",
+            "antworten": [
+		{
+		    "id": "1",
+		    "antwort": "7. Woche"
+		},
+		{
+		    "id": "1",
+		    "antwort": "9. Woche"
+		},
+		{
+		    "id": "1",
+		    "antwort": "11. Woche"
+		},
+		{
+		    "id": "1",
+		    "antwort": "13. Woche"
+		},
+		{
+		    "id": "1",
+		    "antwort": "15. Woche"
+		}
+	    ],
+            "loesung": "1"
+        }
+    ]
+}

@@ -13,13 +13,19 @@ Ext.application({
     name: 'ProVita',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+	'Ext.data.Store'
     ],
 
     views: [
         'Main',
 	'Info',
 	'Quiz'
+    ],
+    
+    models: [
+	'Quizfrage',
+	'Quizantwort'
     ],
 
     icon: {
