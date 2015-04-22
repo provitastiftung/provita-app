@@ -19,7 +19,6 @@ Ext.application({
 
     views: [
         'Main',
-	'Info',
 	'Quiz'
     ],
     

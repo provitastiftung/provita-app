@@ -79,7 +79,20 @@ Ext.define('ProVita.view.Main',
                                 ],
 				listeners : {
 				    itemtap: function(dataview, index, item, e) {
-					this.mainContainer.setActiveItem(1, {type:'slide', direction:'left'});
+					switch(index) {
+					    case 0:
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(1);
+						break;
+					    case 1:
+						Ext.ComponentQuery.query('#mainContainer')[1].setActiveItem(1);
+						break;
+					    case 2:
+						Ext.ComponentQuery.query('#mainContainer')[2].setActiveItem(1);
+						break;
+					    default:
+						Ext.Msg.alert('Bitte etwas Geduld', 'Diese Funktion ist leider noch nicht verfügbar.');
+					}
+					
 				    }
 			        }
                             }
@@ -192,6 +205,32 @@ Ext.define('ProVita.view.Main',
 			    {
                                 // quiz card
 				xtype: 'quiz'
+                            },                            
+			    {
+                                // news
+				xtype: 'container',
+				itemId: 'newsContainer',
+				listeners: [
+				    {
+					activate: function(newActiveItem, container, oldActiveItem, eOpts) {
+					    Ext.Ajax.request({
+						    //local path of your html file
+						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
+						    success : function(response) {
+							var startPos = response.responseText.indexOf('<section id="main">')+18;
+							var endPos = response.responseText.indexOf('</section>')-1;
+							var htmlFrag = response.responseText.substr(startPos,endPos);
+							Ext.getCmp('newsContainer').setHtml(htmlFrag);
+						    },
+						    failure : function(response) {  
+							var text = response.responseText;
+							Ext.Msg.alert('Error', text, Ext.emptyFn);            
+						    }
+					    });
+
+					}
+				    }
+				]
                             }
                         ]
                     }
@@ -200,3 +239,4 @@ Ext.define('ProVita.view.Main',
         ]
     }
 });
+
