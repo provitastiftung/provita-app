@@ -24,7 +24,8 @@ Ext.application({
     
     models: [
 	'Quizfrage',
-	'Quizantwort'
+	'Quizantwort',
+	'Quizliste'
     ],
 
     icon: {

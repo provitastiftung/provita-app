@@ -2,31 +2,329 @@
     "success": true,
     "quizfragen": [
         {
-            "id": "1",
+            "id": 1,
             "frage": "Das schlagende Herz eines Ungeborenen sieht man im Ultraschall ab der wievielten Woche einer Schwangerschaft?",
+            "loesung": 1,
             "antworten": [
 		{
-		    "id": "1",
+		    "id": 1,
 		    "antwort": "7. Woche"
 		},
 		{
-		    "id": "1",
+		    "id": 2,
 		    "antwort": "9. Woche"
 		},
 		{
-		    "id": "1",
+		    "id": 3,
 		    "antwort": "11. Woche"
 		},
 		{
-		    "id": "1",
+		    "id": 4,
 		    "antwort": "13. Woche"
 		},
 		{
-		    "id": "1",
+		    "id": 5,
 		    "antwort": "15. Woche"
 		}
-	    ],
-            "loesung": "1"
+	    ]
+        },
+        {
+            "id": 2,
+            "frage": "In 2/3 der Welt bekommen Frauen ihr erstes Kind im Durchschnitt ...",
+            "loesung": 1,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "Vor dem 20. Lebensjahr"
+		},
+		{
+		    "id": 2,
+		    "antwort": "Nach dem 20. Lebensjahr"
+		},
+		{
+		    "id": 3,
+		    "antwort": "Nach dem 25. Lebensjahr"
+		},
+		{
+		    "id": 4,
+		    "antwort": "Nach dem 30. Lebensjahr"
+		},
+		{
+		    "id": 5,
+		    "antwort": "Nach dem 35. Lebensjahr"
+		}
+	    ]
+        },
+        {
+            "id": 3,
+            "frage": "Beim Ungeborenen sind bis zur 12. Woche der Schwangerschaft bereits vollkommen ausgebildet:",
+            "loesung": 5,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "Arme und Beine"
+		},
+		{
+		    "id": 2,
+		    "antwort": "Das Herz"
+		},
+		{
+		    "id": 3,
+		    "antwort": "Die Leber"
+		},
+		{
+		    "id": 4,
+		    "antwort": "Die Nieren"
+		},
+		{
+		    "id": 5,
+		    "antwort": "Alle Organe"
+		}
+	    ]
+        },
+        {
+            "id": 4,
+            "frage": "In Deutschland werden aktuell Ungeborene mit dem Down-Syndrom (Trisomie 21) von vielen Müttern oder Eltern nicht akzeptiert. Abgetrieben werden aus diesem Grund ...",
+            "loesung": 5,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "10% der betroffenen Foeten"
+		},
+		{
+		    "id": 2,
+		    "antwort": "30% der betroffenen Foeten"
+		},
+		{
+		    "id": 3,
+		    "antwort": "50% der betroffenen Foeten"
+		},
+		{
+		    "id": 4,
+		    "antwort": "70% der betroffenen Foeten"
+		},
+		{
+		    "id": 5,
+		    "antwort": "90% der betroffenen Foeten"
+		}
+	    ]
+        },
+        {
+            "id": 5,
+            "frage": "Die meisten Abtreibungen weltweit geschehen aufgrund der Diagnose ...",
+            "loesung": 5,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "Das Kind wird ein Zwitter"
+		},
+		{
+		    "id": 2,
+		    "antwort": "Das Kind hat keine Arme und Beine"
+		},
+		{
+		    "id": 3,
+		    "antwort": "Das Kind kann nach der Geburt nicht überleben"
+		},
+		{
+		    "id": 4,
+		    "antwort": "Das Kind hat einen Herzfehler"
+		},
+		{
+		    "id": 5,
+		    "antwort": "Das Kind wird ein Mädchen"
+		}
+	    ]
+        },
+        {
+            "id": 6,
+            "frage": "In Deutschland diskutiert man seit Jahren über das Thema Abtreibung. Richtig ist ...",
+            "loesung": 4,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "In Deutschland ist Abtreibung nur in den ersten 10 Schwangerschaftswochen erlaubt"
+		},
+		{
+		    "id": 2,
+		    "antwort": "In Deutschland ist Abtreibung bis zur 23. Schwangerschaftswoche erlaubt"
+		},
+		{
+		    "id": 3,
+		    "antwort": "In Deutschland ist Schwangerschaftsabbruch generell erlaubt"
+		},
+		{
+		    "id": 4,
+		    "antwort": "In Deutschland ist Schwangerschaftsabbruch generell verboten"
+		},
+		{
+		    "id": 5,
+		    "antwort": "In Deutschland ist Schwangerschaftsabbruch noch nie verboten gewesen"
+		}
+	    ]
+        },
+        {
+            "id": 7,
+            "frage": "Für Frauen, die ihr Kind abgetrieben haben, gilt häufig ...",
+            "loesung": 3,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "Sie sind froh, kein Kind versorgen zu müssen"
+		},
+		{
+		    "id": 2,
+		    "antwort": "Sie würden das jederzeit noch einmal machen"
+		},
+		{
+		    "id": 3,
+		    "antwort": "Sie würden das Geschehene oft gerne wieder rückgängig machen"
+		},
+		{
+		    "id": 4,
+		    "antwort": "Sie würden jedem raten es genauso zu machen"
+		},
+		{
+		    "id": 5,
+		    "antwort": "Sie finden eine solche Entscheidung ganz alltäglich"
+		}
+	    ]
+        },
+        {
+            "id": 8,
+            "frage": "Die Wahrscheinlichkeit für eine Frau spontan schwanger zu werden ...",
+            "loesung": 1,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "nimmt ab dem 35. Lebensjahr rapide ab"
+		},
+		{
+		    "id": 2,
+		    "antwort": "ist bis zum 50. Lebensjahr etwa gleichbleibend"
+		},
+		{
+		    "id": 3,
+		    "antwort": "ist zwischen dem 18. und 28. Lebensjahr am niedrigsten"
+		},
+		{
+		    "id": 4,
+		    "antwort": "ist vor dem 30. Lebensjahr gering"
+		},
+		{
+		    "id": 5,
+		    "antwort": "ist ausschließlich vom Mann abhängig"
+		}
+	    ]
+        },
+        {
+            "id": 9,
+            "frage": "Die aktuelle von staatlicher Seite angegebene Zahl von Abtreibungen pro Jahr liegt in Deutschland ...",
+            "loesung": 3,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "unter 10.000"
+		},
+		{
+		    "id": 2,
+		    "antwort": "unter 100.000"
+		},
+		{
+		    "id": 3,
+		    "antwort": "deutlich über 100.000"
+		},
+		{
+		    "id": 4,
+		    "antwort": "wird geheim gehalten"
+		},
+		{
+		    "id": 5,
+		    "antwort": "ist nicht bekannt"
+		}
+	    ]
+        },
+        {
+            "id": 10,
+            "frage": "Aktive Sterbehilfe wird in Deutschland seit Jahren widersprüchlich diskutiert, momentan ist aktive Sterbehilfe in Deutschland ...",
+            "loesung": 2,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "nur in Ausnahmefällen erlaubt"
+		},
+		{
+		    "id": 2,
+		    "antwort": "auch in Ausnahmefällen verboten"
+		},
+		{
+		    "id": 3,
+		    "antwort": "nur vom Arzt durchzuführen"
+		},
+		{
+		    "id": 4,
+		    "antwort": "nur im Krankenhaus durchzuführen"
+		},
+		{
+		    "id": 5,
+		    "antwort": "ausschließlich Sterbe-Instituten vorbehalten"
+		}
+	    ]
+        },
+        {
+            "id": 11,
+            "frage": "Passive Sterbehilfe bedeutet, Menschen das Sterben zu erleichtern, in dem man ihnen ...",
+            "loesung": 4,
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "das Essen verweigert"
+		},
+		{
+		    "id": 2,
+		    "antwort": "nichts mehr zu Trinken anbietet"
+		},
+		{
+		    "id": 3,
+		    "antwort": "alle Medikamente verweigert"
+		},
+		{
+		    "id": 4,
+		    "antwort": "auf lebensverlängernde Maßnahmen verzichtet"
+		},
+		{
+		    "id": 5,
+		    "antwort": "Schmerzmittel überdosiert"
+		}
+	    ]
+        },
+        {
+            "id": 12,
+            "frage": "Laut einer Umfrage möchten 66% der befragten Deutschen nach Möglichkeit zu Hause sterben. Wo sterben tatsächlich die meisten Menschen?",
+            "loesung": 2,
+	    "info": "im Krankenhaus: 50%, im Pflegeheim 25%, zu Hause 20%, im Hospiz 15%",
+            "antworten": [
+		{
+		    "id": 1,
+		    "antwort": "Zu Hause"
+		},
+		{
+		    "id": 2,
+		    "antwort": "Im Krankenhaus"
+		},
+		{
+		    "id": 3,
+		    "antwort": "In Pflegeheimen"
+		},
+		{
+		    "id": 4,
+		    "antwort": "Im Hospiz oder einer Palliativ-Station"
+		},
+		{
+		    "id": 5,
+		    "antwort": "An anderen Orten"
+		}
+	    ]
         }
     ]
 }

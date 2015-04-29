@@ -28,21 +28,7 @@ Ext.define('ProVita.view.Main',
                     {
                         iconCls: 'list',
                         align: 'left',
-                        handler: function()
-                        {
-                            var con1 = Ext.ComponentQuery.query('container > #container1')[0];
-                            var draggable = Ext.ComponentQuery.query('container > #navContainer')[0];
-                            if(con1.element.hasCls('out'))
-                            {
-                                draggable.hide({type: 'slideOut', direction: 'left', duration : 300});
-                                con1.element.removeCls('out').addCls('in');
-                            }
-                            else
-                            {
-                                con1.element.removeCls('in').addCls('out');
-                                draggable.show({type:'slideIn', direction:'right', duration : 300});
-                            }
-                        }
+                        handler: toggleMenu
                     }
                 ]
             },
@@ -70,27 +56,34 @@ Ext.define('ProVita.view.Main',
                                 data:
                                 [
                                     { title: 'Start' },
-				    { title: 'Quiz' },
+				    { title: '<span style="font-weight:bold">Quiz</bold>' },
                                     { title: 'Aktuelle Infomail' },
                                     { title: 'Nachrichten' },
                                     { title: 'Veranstaltungen' },
-                                    { title: 'Stiftungszweck' },
-                                    { title: 'Die Stiftung' }               
+                                    { title: 'Die Stiftung' },
+                                    { title: 'Kontakt' }               
                                 ],
 				listeners : {
 				    itemtap: function(dataview, index, item, e) {
 					switch(index) {
 					    case 0:
-						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(1);
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(0);
+						toggleMenu();
 						break;
 					    case 1:
-						Ext.ComponentQuery.query('#mainContainer')[1].setActiveItem(1);
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(1);
+						toggleMenu();
 						break;
-					    case 2:
-						Ext.ComponentQuery.query('#mainContainer')[2].setActiveItem(1);
+					    case 5:
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(5);
+						toggleMenu();
+						break;
+					    case 6:
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(6);
+						toggleMenu();
 						break;
 					    default:
-						Ext.Msg.alert('Bitte etwas Geduld', 'Diese Funktion ist leider noch nicht verfügbar.');
+						Ext.Msg.alert('Bitte etwas Geduld', 'Diese Funktion ist leider noch nicht verf&uuml;gbar.');
 					}
 					
 				    }
@@ -220,6 +213,7 @@ Ext.define('ProVita.view.Main',
 							var startPos = response.responseText.indexOf('<section id="main">')+18;
 							var endPos = response.responseText.indexOf('</section>')-1;
 							var htmlFrag = response.responseText.substr(startPos,endPos);
+							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
 							Ext.getCmp('newsContainer').setHtml(htmlFrag);
 						    },
 						    failure : function(response) {  
@@ -231,8 +225,210 @@ Ext.define('ProVita.view.Main',
 					}
 				    }
 				]
-                            }
-                        ]
+                            },
+			    {
+                                // news
+				xtype: 'container',
+				itemId: 'news2Container',
+				listeners: [
+				    {
+					activate: function(newActiveItem, container, oldActiveItem, eOpts) {
+					    Ext.Ajax.request({
+						    //local path of your html file
+						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
+						    success : function(response) {
+							var startPos = response.responseText.indexOf('<section id="main">')+18;
+							var endPos = response.responseText.indexOf('</section>')-1;
+							var htmlFrag = response.responseText.substr(startPos,endPos);
+							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
+							Ext.getCmp('news2Container').setHtml(htmlFrag);
+						    },
+						    failure : function(response) {  
+							var text = response.responseText;
+							Ext.Msg.alert('Error', text, Ext.emptyFn);            
+						    }
+					    });
+
+					}
+				    }
+				]
+                            },
+			    {
+                                // news
+				xtype: 'container',
+				itemId: 'news3Container',
+				listeners: [
+				    {
+					activate: function(newActiveItem, container, oldActiveItem, eOpts) {
+					    Ext.Ajax.request({
+						    //local path of your html file
+						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
+						    success : function(response) {
+							var startPos = response.responseText.indexOf('<section id="main">')+18;
+							var endPos = response.responseText.indexOf('</section>')-1;
+							var htmlFrag = response.responseText.substr(startPos,endPos);
+							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
+							Ext.getCmp('news3Container').setHtml(htmlFrag);
+						    },
+						    failure : function(response) {  
+							var text = response.responseText;
+							Ext.Msg.alert('Error', text, Ext.emptyFn);            
+						    }
+					    });
+
+					}
+				    }
+				]
+                            },
+			    {
+				// info carousel
+				xtype: 'carousel',
+				itemId: 'stiftungContainer',
+				items: 
+				[
+				    {
+					title: 'Die Stiftung - Zweck',
+					scrollable: true,
+
+					items: {
+					    docked: 'top',
+					    xtype: 'titlebar',
+					    title: 'Die Stiftung - Zweck'
+					},
+					html: [
+					    "<p>Die Stiftung ProVita verfolgt ausschlie&szlig;lich und unmittelbar kirchliche und gemeinn&uuml;tzige Zwecke im Sinne des Abschnitts „Steuerbeg&uuml;nstigte Zwecke“ der Abgabenordnung. Zweck der Stiftung ist die F&ouml;rderung der kirchlichen und religi&ouml;sen Belange aller auf der Basis der Deutschen Evangelischen Allianz stehenden kirchlichen K&ouml;rperschaften und Institutionen im Bereich Ja zum Leben.</p>",
+					    "<p>Der Zweck der Stiftung wird, ausgehend vom christlichen Menschenbild und der Hinwendung zum Leben in all seiner Differenziertheit, im In- und Ausland insbesondere verwirklicht durch",
+					    "<ul><li>Aufkl&auml;rung und Sensibilisierung</li>",
+					    "<li>Aufkl&auml;rung und Sensibilisierung</li>",
+					    "<li>Hilfsangebote an Betroffene, um auch unter schwierigen Bedingungen ein Ja zum Leben finden zu k&ouml;nnen</li>",
+					    "<li>Ma&szlig;nahmen, in denen Aufkl&auml;rung, Beratung und Informationsweitergabe geleistet werden</li>",
+					    "<li>Begleitung in ethischen Gewissenskonflikten mit dem Ziel der Hilfe zum Leben</li>",
+					    "<li>F&ouml;rderung von Leben und Ermutigung zum Leben pr&auml;- und postnatal, sowie in den Herausforderungen des Lebens in Krankheit und Leid</li>",
+					    "<li>Beratung zu den Fragen des Lebensendes, zum Sterben in W&uuml;rde, Sterbe- und Pflegeethik</li>",
+					    "<li>Hilfe bei der Suche nach Entscheidungskriterien</li>",
+					    "<li>Familien- und Erwachsenenbildung</li>",
+					    "<li>Fortbildung f&uuml;r Mitarbeiter, ehrenamtliche Helfer, Interessierte und Betroffene</li>",
+					    "<li>Vortr&auml;ge, Diskussionsveranstaltungen, Seminare, Austausch-B&ouml;rsen, Internet-Auftritte</li>",
+					    "<li>Unterst&uuml;tzung anderer Organisationen bei Aktivit&auml;ten, die dem Stiftungszweck entsprechen</li></ul>"
+					].join("")
+				    },
+				    {
+					title: 'Die Stiftung',
+					scrollable: true,
+
+					items: {
+					    docked: 'top',
+					    xtype: 'titlebar',
+					    title: 'Die Stiftung'
+					},
+					html: [
+					    '<p><img src="resources/images/zweck.jpg" /></p>',
+					    "<p>Wir stehen ein f&uuml;r</p>",
+					    "<ul><li>den Schutz der Menschenw&uuml;rde und des Lebensrechtes eines jeden Einzelnen</li>",
+					    "<li>die Achtung des Lebens Ungeborener und der W&uuml;rde von Menschen, die sich nicht selbst zu eigenen Belangen &auml;u&szlig;ern k&ouml;nnen</li>",
+					    "<li>der kritischen Begleitung der M&ouml;glichkeiten des rasanten biotechnologischen Fortschritts</li>",
+					    "<p>ProVita ist</p>",
+					    "<li>eine eingetragene Stiftung</li>",
+					    "<li>Kooperationspartner in lebensethischen Fragen f&uuml;r den Bund Freier evangelischer Gemeinden</li>",
+					    "<li>Mitglied im Bundesverband Lebensrecht (BVL)</li>",
+					    "<li>Netzwerkpartner gemeinsam mit anderen Lebensrechtsgruppen und Initiativen</li></ul>"
+					].join("")
+				    },
+				    {
+					title: 'Die Stiftung - Vorstand',
+					scrollable: true,
+
+					items: {
+					    docked: 'top',
+					    xtype: 'titlebar',
+					    title: 'Die Stiftung - Vorstand'
+					},
+					html: [
+					    "<p>Dem Vorstand der Stiftung ProVita geh&ouml;ren an: </p>",
+					    '<p><img src="resources/images/vorstand.jpg" /></p>',
+					    "<ul><li>Dr. Detlev Katzwinkel (Vorsitzender)</li>",
+					    "<li>Dr. Heike Fischer (Gesch&auml;ftsf&uuml;hrerin)</li>",
+					    "<li>Friedhelm Loh</li>",
+					    "<li>Michael Borkowski</li>",
+					    "<li>Volker Reder</li></ul></p>",
+					    "<p>Der Vorstand wir durch den Stiftungsrat beraten und unterst&uuml;tzt.</p>"
+					].join("")
+				    },
+				    {
+					title: 'Die Stiftung - Ver&ouml;ffentlichungen',
+					scrollable: true,
+
+					items: {
+					    docked: 'top',
+					    xtype: 'titlebar',
+					    title: 'Die Stiftung - Ver&ouml;ffentlichungen'
+					},
+					html: [
+					    "<p>Diese Seite ist aktuell noch im Aufbau, weitere Texte und Ver&ouml;ffentlichungen folgen.</p>",
+					    "<p>Autor: Dr. Detlev Katzwinkel:</p>",
+					    "<ul><li>Das Kind, das ich nie geboren habe, SCM Brockhaus, ISBN 978-3-417-26212-4 (2007)</li>",
+					    '<li>Zum Umgang mit Fehlgeburten, Totgeburten und abgetriebenen Kindern in Kliniken und Instituten, Beitrag in "Sie schauen das Antlitz Gottes" Teresa Loichen (Hrsg.), S. 47-62, Verlag Friedrich Pustet, ISBN 978-37917-2460-7 (2012)</li>',
+					    '<li>MITGEDACHT 1/2002: Leben annehmen statt ausw&auml;hlen - zum Problem der pr&auml;natlen Diagnostik herausgegeben vom "Gespr&auml;chskreis f&uuml;r soziale Fragen" MITGEDACHT ist zu beziehen bei der Gesch&auml;ftsstelle des Bundes Freier evangelischer Gemeinden, Goltenkamp 4, 58452 Witten</li></ul>'
+					].join("")
+				    },
+				    {
+					title: 'Die Stiftung - Zusammenarbeit',
+					scrollable: true,
+
+					items: {
+					    docked: 'top',
+					    xtype: 'titlebar',
+					    title: 'Die Stiftung - Zusammenarbeit'
+					},
+					html: [
+					    "<p>Die Stiftung ProVita arbeitet zusammen mit</p>",
+					    "<ul><li>dem Bund Freier evangelischer Gemeinden Kd&ouml;R</li>",
+					    "<li>dem Bund Evangelisch Freikirchlicher Gemeinden</li>",
+					    "<li>dem Treffen christlicher Lebensrechtsgruppen (TCLG)</li>",
+					    "<li>ist Mitglied im Bundesverband Lebensrecht (BVL)</li>",
+					    '<li>der Beratungsstelle Aus-WEG?! des Vereins "Hilfe zum Leben Pforzheim e.V."</li></ul>',
+					    '<p>Dr. Detlev Katzwinkel (Vorsitzender) ist Mitglied der Bundesarbeitsgemeinschaft „Folgen nach Fehlgeburt, Totgeburt und Schwangerschaftsabbruch"</p>'
+					].join("")
+				    }
+				]
+			    },
+			    {
+				// kontakt
+				xtype: 'panel',
+				itemId: 'kontaktContainer',
+				items: [{
+				    xtype: 'fieldset',
+				    items: [
+					{
+					    xtype: 'textfield',
+					    name : 'name',
+					    label: 'Name'
+					},
+					{
+					    xtype: 'emailfield',
+					    name : 'email',
+					    label: 'Email'
+					},
+					{
+					    xtype: 'textfield',
+					    name : 'telefon',
+					    label: 'Telefon'
+					},
+					{
+					    xtype: 'togglefield',
+					    name : 'rückruf',
+					    label: 'Bitte rufen Sie mich zurück!'
+					},
+					{
+					    xtype: 'textareafield',
+					    name : 'nachricht',
+					    label: 'Ihre Nachricht',
+					    maxRows: 5
+					}
+				    ]
+				}]				
+			    }
+			]
                     }
 		]
             }
@@ -240,3 +436,17 @@ Ext.define('ProVita.view.Main',
     }
 });
 
+function toggleMenu() {
+    var con1 = Ext.ComponentQuery.query('container > #container1')[0];
+    var draggable = Ext.ComponentQuery.query('container > #navContainer')[0];
+    if(con1.element.hasCls('out'))
+    {
+	draggable.hide({type: 'slideOut', direction: 'left', duration : 300});
+	con1.element.removeCls('out').addCls('in');
+    }
+    else
+    {
+	con1.element.removeCls('in').addCls('out');
+	draggable.show({type:'slideIn', direction:'right', duration : 300});
+    }
+}
