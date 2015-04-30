@@ -11,7 +11,11 @@ Ext.define('ProVita.view.Main',
         'Ext.Component',
         'Ext.Panel',
 	'Ext.Carousel',
-	'ProVita.view.Quiz'
+	'ProVita.view.Quiz',
+	'Ext.form.FieldSet',
+	'Ext.field.Email',
+	'Ext.field.Toggle',
+	'Ext.device.Push'
     ],
 
     config: 
@@ -72,6 +76,26 @@ Ext.define('ProVita.view.Main',
 						break;
 					    case 1:
 						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(1);
+						toggleMenu();
+						break;
+					    case 2:
+						Ext.Ajax.request({
+						    //local path of your html file
+						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
+						    success : function(response) {
+							var startPos = response.responseText.indexOf('<section id="main">')+18;
+							var endPos = response.responseText.indexOf('</section>')-1;
+							var htmlFrag = response.responseText.substr(startPos,endPos);
+							//Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
+							Ext.getCmp('newsContainer').setHtml(htmlFrag);
+						    },
+						    failure : function(response) {  
+							var text = response.responseText;
+							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
+							Ext.getCmp('newsContainer').setHtml(htmlFrag);
+						    }
+						});
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(2);
 						toggleMenu();
 						break;
 					    case 5:
@@ -203,28 +227,7 @@ Ext.define('ProVita.view.Main',
                                 // news
 				xtype: 'container',
 				itemId: 'newsContainer',
-				listeners: [
-				    {
-					activate: function(newActiveItem, container, oldActiveItem, eOpts) {
-					    Ext.Ajax.request({
-						    //local path of your html file
-						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
-						    success : function(response) {
-							var startPos = response.responseText.indexOf('<section id="main">')+18;
-							var endPos = response.responseText.indexOf('</section>')-1;
-							var htmlFrag = response.responseText.substr(startPos,endPos);
-							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
-							Ext.getCmp('newsContainer').setHtml(htmlFrag);
-						    },
-						    failure : function(response) {  
-							var text = response.responseText;
-							Ext.Msg.alert('Error', text, Ext.emptyFn);            
-						    }
-					    });
-
-					}
-				    }
-				]
+				masked: { xtype: 'loadmask', message: 'Die aktuelle Infomail wird geladen...' }
                             },
 			    {
                                 // news
@@ -237,15 +240,18 @@ Ext.define('ProVita.view.Main',
 						    //local path of your html file
 						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
 						    success : function(response) {
+							Ext.Msg.alert('News', 'success', Ext.emptyFn);            
 							var startPos = response.responseText.indexOf('<section id="main">')+18;
 							var endPos = response.responseText.indexOf('</section>')-1;
 							var htmlFrag = response.responseText.substr(startPos,endPos);
 							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
 							Ext.getCmp('news2Container').setHtml(htmlFrag);
+							Ext.getCmp('news2Container').setMasked(false);
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
-							Ext.Msg.alert('Error', text, Ext.emptyFn);            
+							Ext.Msg.alert('Error', text, Ext.emptyFn);
+							Ext.getCmp('news2Container').setMasked(false);
 						    }
 					    });
 
@@ -394,39 +400,57 @@ Ext.define('ProVita.view.Main',
 			    },
 			    {
 				// kontakt
-				xtype: 'panel',
+				xtype: 'formpanel',
 				itemId: 'kontaktContainer',
-				items: [{
-				    xtype: 'fieldset',
-				    items: [
-					{
-					    xtype: 'textfield',
-					    name : 'name',
-					    label: 'Name'
-					},
-					{
-					    xtype: 'emailfield',
-					    name : 'email',
-					    label: 'Email'
-					},
-					{
-					    xtype: 'textfield',
-					    name : 'telefon',
-					    label: 'Telefon'
-					},
-					{
-					    xtype: 'togglefield',
-					    name : 'rückruf',
-					    label: 'Bitte rufen Sie mich zurück!'
-					},
-					{
-					    xtype: 'textareafield',
-					    name : 'nachricht',
-					    label: 'Ihre Nachricht',
-					    maxRows: 5
+				items: [
+				    {
+					xtype: 'fieldset',
+					title: 'Fragen? Probleme? Wir sind f&uuml;r Dich da.',
+					instructions: 'Die Anfragen werden verschl&uuml;sselt &uuml;bertragen, keine weiteren Daten Deiner Anfrage gespeichert und die &uuml;bermittelte Anfrage wird vertraulich behandelt.',
+					items: [
+					    {
+						xtype: 'textfield',
+						name : 'name',
+						label: 'Name'
+					    },
+					    {
+						xtype: 'emailfield',
+						name : 'email',
+						label: 'Email'
+					    },
+					    {
+						xtype: 'textfield',
+						name : 'telefon',
+						label: 'Telefon'
+					    },
+					    {
+						xtype: 'togglefield',
+						name : 'rückruf',
+						label: 'Bitte rufen Sie mich zur&uuml;ck!'
+					    },
+					    {
+						xtype: 'textareafield',
+						name : 'nachricht',
+						label: 'Ihre Nachricht',
+						maxRows: 5
+					    }
+					]
+				    },
+				    {
+					xtype: 'button',
+					text: 'Absenden',
+					ui: 'confirm',
+					handler: function() {
+					    this.up('formpanel').submit({
+						url: 'https://sese.de/test.php',
+						method: 'POST',
+						success: function() {
+						    Ext.Msg.alert('Danke', 'Deine Anfrage wurde abgeschickt.', Ext.emptyFn);
+						}
+					    });
 					}
-				    ]
-				}]				
+				    }
+				]				
 			    }
 			]
                     }
