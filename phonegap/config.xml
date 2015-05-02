@@ -56,5 +56,6 @@
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
     <access origin="https://sese.de/" />
+    <access origin="https://www.provita-stiftung.de/" />
     <access origin="http://www.provita-stiftung.de/" />
 </widget>

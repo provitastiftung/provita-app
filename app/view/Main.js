@@ -81,21 +81,74 @@ Ext.define('ProVita.view.Main',
 					    case 2:
 						Ext.Ajax.request({
 						    //local path of your html file
-						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
+						    url: 'http://www.provita-stiftung.de/appjson.cgi',
 						    success : function(response) {
-							var startPos = response.responseText.indexOf('<section id="main">')+18;
-							var endPos = response.responseText.indexOf('</section>')-1;
-							var htmlFrag = response.responseText.substr(startPos,endPos);
-							//Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
-							Ext.getCmp('newsContainer').setHtml(htmlFrag);
+							var json = Ext.util.JSON.decode(response.responseText)
+							//Ext.Msg.alert('News', json.veranstaltungen[0].caption, Ext.emptyFn);            
+							var c = Ext.ComponentQuery.query("#newsContainer")[0];
+							c.setHtml(json.aktuelles.main);
+							c.unmask();
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
 							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
-							Ext.getCmp('newsContainer').setHtml(htmlFrag);
+							var c = Ext.ComponentQuery.query("#newsContainer")[0];
+							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
+							c.unmask();
 						    }
 						});
 						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(2);
+						toggleMenu();
+						break;
+					    case 3:
+						Ext.Ajax.request({
+						    //local path of your html file
+						    url: 'http://www.provita-stiftung.de/appjson.cgi',
+						    success : function(response) {
+							var json = Ext.util.JSON.decode(response.responseText)
+							var c = Ext.ComponentQuery.query("#news2Container")[0];
+							var html = '';
+							Ext.Array.each(json.nachrichten, function(nachricht, index, nachrichtenItSelf) {
+							    html = html + '<h1>' + nachricht.caption + '</h1>' + nachricht.about + nachricht.main;
+							});
+							c.setHtml(html);
+							c.unmask();
+						    },
+						    failure : function(response) {  
+							var text = response.responseText;
+							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
+							var c = Ext.ComponentQuery.query("#news2Container")[0];
+							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
+							c.unmask();
+						    }
+						});
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(3);
+						toggleMenu();
+						break;
+					    case 4:
+						Ext.Ajax.request({
+						    //local path of your html file
+						    url: 'http://www.provita-stiftung.de/appjson.cgi',
+						    success : function(response) {
+							var json = Ext.util.JSON.decode(response.responseText)
+							//Ext.Msg.alert('News', json.veranstaltungen[0].caption, Ext.emptyFn);            
+							var c = Ext.ComponentQuery.query("#news3Container")[0];
+							var html = '';
+							Ext.Array.each(json.veranstaltungen, function(veranstaltung, index, veranstaltungenItSelf) {
+							    html = html + '<h1>' + veranstaltung.caption + '</h1>' + veranstaltung.about + veranstaltung.main;
+							});
+							c.setHtml(html);
+							c.unmask();
+						    },
+						    failure : function(response) {  
+							var text = response.responseText;
+							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
+							var c = Ext.ComponentQuery.query("#news3Container")[0];
+							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
+							c.unmask();
+						    }
+						});
+						Ext.ComponentQuery.query('#mainContainer')[0].setActiveItem(4);
 						toggleMenu();
 						break;
 					    case 5:
@@ -224,67 +277,31 @@ Ext.define('ProVita.view.Main',
 				xtype: 'quiz'
                             },                            
 			    {
-                                // news
+                                // infomail
 				xtype: 'container',
 				itemId: 'newsContainer',
-				masked: { xtype: 'loadmask', message: 'Die aktuelle Infomail wird geladen...' }
+				masked: { xtype: 'loadmask', message: 'Die aktuelle Infomail wird geladen...' },
+				config: {
+				    scrollable: 'true'
+				}
                             },
 			    {
-                                // news
+                                // Nachrichten
 				xtype: 'container',
 				itemId: 'news2Container',
-				listeners: [
-				    {
-					activate: function(newActiveItem, container, oldActiveItem, eOpts) {
-					    Ext.Ajax.request({
-						    //local path of your html file
-						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
-						    success : function(response) {
-							Ext.Msg.alert('News', 'success', Ext.emptyFn);            
-							var startPos = response.responseText.indexOf('<section id="main">')+18;
-							var endPos = response.responseText.indexOf('</section>')-1;
-							var htmlFrag = response.responseText.substr(startPos,endPos);
-							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
-							Ext.getCmp('news2Container').setHtml(htmlFrag);
-							Ext.getCmp('news2Container').setMasked(false);
-						    },
-						    failure : function(response) {  
-							var text = response.responseText;
-							Ext.Msg.alert('Error', text, Ext.emptyFn);
-							Ext.getCmp('news2Container').setMasked(false);
-						    }
-					    });
-
-					}
-				    }
-				]
+				masked: { xtype: 'loadmask', message: 'Die Nachrichten werden geladen...' },
+				config: {
+				    scrollable: 'true'
+				}
                             },
 			    {
-                                // news
+                                // Veranstaltungen
 				xtype: 'container',
 				itemId: 'news3Container',
-				listeners: [
-				    {
-					activate: function(newActiveItem, container, oldActiveItem, eOpts) {
-					    Ext.Ajax.request({
-						    //local path of your html file
-						    url: 'http://www.provita-stiftung.de/aktuelles/aktuelle_infomail/',
-						    success : function(response) {
-							var startPos = response.responseText.indexOf('<section id="main">')+18;
-							var endPos = response.responseText.indexOf('</section>')-1;
-							var htmlFrag = response.responseText.substr(startPos,endPos);
-							Ext.Msg.alert('News', htmlFrag, Ext.emptyFn);            
-							Ext.getCmp('news3Container').setHtml(htmlFrag);
-						    },
-						    failure : function(response) {  
-							var text = response.responseText;
-							Ext.Msg.alert('Error', text, Ext.emptyFn);            
-						    }
-					    });
-
-					}
-				    }
-				]
+				masked: { xtype: 'loadmask', message: 'Die Veranstaltungen werden geladen...' },
+				config: {
+				    scrollable: 'true'
+				}
                             },
 			    {
 				// info carousel
