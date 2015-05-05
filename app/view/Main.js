@@ -11,7 +11,7 @@ Ext.define('ProVita.view.Main',
         'Ext.Component',
         'Ext.Panel',
 	'Ext.Carousel',
-	'ProVita.view.Quiz',
+//	'ProVita.view.Quiz',
 	'Ext.form.FieldSet',
 	'Ext.field.Email',
 	'Ext.field.Toggle',
@@ -271,11 +271,101 @@ Ext.define('ProVita.view.Main',
 					].join("")
 				    }
 				]
-			    },                            
+			    }, 
 			    {
+				// quiz
+				xtype: 'panel',
+				itemId: 'quizContainer',
+				layout: 'card',
+				items: 
+				[
+				    {
+					// start
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Teste Dein Wissen rund um das Leben!<br />Beantworte das ProVita-Quiz und nimm an unserer Verlosung teil.", 
+							selectable: false 
+						    },
+						    { 
+							txt: "Los geht's!",
+							name: 'los'
+						    }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(1, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 1
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Das schlagende Herz eines Ungeborenen sieht man im Ultraschall ab der wievielten Woche einer Schwangerschaft?", 
+							loesung: 1,
+							selectable: false
+						    },
+						    { txt: "7. Woche", loesung: true },
+						    { txt: "9. Woche", loesung: false },
+						    { txt: "11. Woche", loesung: false },
+						    { txt: "13. Woche", loesung: false },
+						    { txt: "15. Woche", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(1, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				]
+			    },                            
+/*			    {
                                 // quiz card
 				xtype: 'quiz'
                             },                            
+*/
 			    {
                                 // infomail
 				xtype: 'container',

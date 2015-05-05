@@ -18,14 +18,14 @@ Ext.application({
     ],
 
     views: [
-        'Main',
-	'Quiz'
+        'Main'
+//	'Quiz'
     ],
     
     models: [
-	'Quizfrage',
+/*	'Quizfrage',
 	'Quizantwort',
-	'Quizliste'
+	'Quizliste'*/
     ],
 
     icon: {
