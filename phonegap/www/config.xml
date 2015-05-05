@@ -4,7 +4,7 @@
     <description>
 	ProVita - Stiftung für Lebensethik
     </description>
-    <author email="provita@diercks.email" href="http://www.provita-stiftung.de">
+    <author email="app@provita-stiftung.de" href="http://www.provita-stiftung.de">
         Simon Diercks
     </author>
     <content src="index.html" />
@@ -23,11 +23,10 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="org.apache.cordova.vibration" />
+    <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+    <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
     <!--<gap:plugin name="com.adobe.plugins.PushPlugin" />-->
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
@@ -54,8 +53,6 @@
     <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
-    <access origin="*" />
-    <access origin="https://sese.de/" />
-    <access origin="https://www.provita-stiftung.de/" />
-    <access origin="http://www.provita-stiftung.de/" />
+    <access origin="https://app.provita-stiftung.de*" />
+    <access origin="http://www.provita-stiftung.de*" />
 </widget>

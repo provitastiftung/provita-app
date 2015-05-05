@@ -14,7 +14,8 @@ Ext.define('ProVita.view.Main',
 	'Ext.form.FieldSet',
 	'Ext.field.Email',
 	'Ext.field.Toggle',
-	'Ext.device.Push'
+	'Ext.field.Hidden'
+	//'Ext.device.Push'
     ],
 
     config: 
@@ -115,9 +116,9 @@ Ext.define('ProVita.view.Main',
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
-							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
+							Ext.Msg.alert('Error', 'Die Nachrichten konnten leider nicht geladen werden.', Ext.emptyFn);            
 							var c = Ext.ComponentQuery.query("#news2Container")[0];
-							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
+							c.setHtml('<p>Die Nachrichten konnten leider nicht geladen werden.</p>');
 							c.unmask();
 						    }
 						});
@@ -141,9 +142,9 @@ Ext.define('ProVita.view.Main',
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
-							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
+							Ext.Msg.alert('Error', 'Die Veranstaltungen konnten leider nicht geladen werden.', Ext.emptyFn);            
 							var c = Ext.ComponentQuery.query("#news3Container")[0];
-							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
+							c.setHtml('<p>Die Veranstaltungen konnten leider nicht geladen werden.</p>');
 							c.unmask();
 						    }
 						});
@@ -347,7 +348,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -392,7 +393,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -437,7 +438,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -465,7 +466,7 @@ Ext.define('ProVita.view.Main',
 						itemTpl: '{txt}',
 						data: [
 						    { 
-							txt: "In Deutschland werden aktuell Ungeborene mit dem Down-Syndrom (Trisomie 21) von vielen Müttern oder Eltern nicht akzeptiert. Abgetrieben werden aus diesem Grund ...", 
+							txt: "In Deutschland werden aktuell Ungeborene mit dem Down-Syndrom (Trisomie 21) von vielen M&uuml;ttern oder Eltern nicht akzeptiert. Abgetrieben werden aus diesem Grund ...", 
 							loesung: 5,
 							selectable: false
 						    },
@@ -482,7 +483,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -516,9 +517,9 @@ Ext.define('ProVita.view.Main',
 						    },
 						    { txt: "Das Kind wird ein Zwitter", loesung: false },
 						    { txt: "Das Kind hat keine Arme und Beine", loesung: false },
-						    { txt: "Das Kind kann nach der Geburt nicht überleben", loesung: false },
+						    { txt: "Das Kind kann nach der Geburt nicht &uuml;berleben", loesung: false },
 						    { txt: "Das Kind hat einen Herzfehler", loesung: false },
-						    { txt: "Das Kind wird ein Mädchen", loesung: true }
+						    { txt: "Das Kind wird ein M&auml;dchen", loesung: true }
 						],
 						listeners:{
 						    select:function(list, model){
@@ -527,7 +528,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -555,7 +556,7 @@ Ext.define('ProVita.view.Main',
 						itemTpl: '{txt}',
 						data: [
 						    { 
-							txt: "In Deutschland diskutiert man seit Jahren über das Thema Abtreibung. Richtig ist ...", 
+							txt: "In Deutschland diskutiert man seit Jahren &uuml;ber das Thema Abtreibung. Richtig ist ...", 
 							loesung: 4,
 							selectable: false
 						    },
@@ -572,7 +573,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -600,15 +601,15 @@ Ext.define('ProVita.view.Main',
 						itemTpl: '{txt}',
 						data: [
 						    { 
-							txt: "Für Frauen, die ihr Kind abgetrieben haben, gilt häufig ...", 
+							txt: "F&uuml;r Frauen, die ihr Kind abgetrieben haben, gilt h&auml;ufig ...", 
 							loesung: 3,
 							selectable: false
 						    },
-						    { txt: "Sie sind froh, kein Kind versorgen zu müssen", loesung: false },
-						    { txt: "Sie würden das jederzeit noch einmal machen", loesung: false },
-						    { txt: "Sie würden das Geschehene oft gerne wieder rückgängig machen", loesung: true },
-						    { txt: "Sie würden jedem raten es genauso zu machen", loesung: false },
-						    { txt: "Sie finden eine solche Entscheidung ganz alltäglich", loesung: false }
+						    { txt: "Sie sind froh, kein Kind versorgen zu m&uuml;ssen", loesung: false },
+						    { txt: "Sie w&uuml;rden das jederzeit noch einmal machen", loesung: false },
+						    { txt: "Sie w&uuml;rden das Geschehene oft gerne wieder r&uuml;ckg&auml;ngig machen", loesung: true },
+						    { txt: "Sie w&uuml;rden jedem raten es genauso zu machen", loesung: false },
+						    { txt: "Sie finden eine solche Entscheidung ganz allt&auml;glich", loesung: false }
 						],
 						listeners:{
 						    select:function(list, model){
@@ -617,7 +618,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -645,7 +646,7 @@ Ext.define('ProVita.view.Main',
 						itemTpl: '{txt}',
 						data: [
 						    { 
-							txt: "Die Wahrscheinlichkeit für eine Frau spontan schwanger zu werden ...", 
+							txt: "Die Wahrscheinlichkeit f&uuml;r eine Frau spontan schwanger zu werden ...", 
 							loesung: 1,
 							selectable: false
 						    },
@@ -653,7 +654,7 @@ Ext.define('ProVita.view.Main',
 						    { txt: "ist bis zum 50. Lebensjahr etwa gleichbleibend", loesung: false },
 						    { txt: "ist zwischen dem 18. und 28. Lebensjahr am niedrigsten", loesung: false },
 						    { txt: "ist vor dem 30. Lebensjahr gering", loesung: false },
-						    { txt: "ist ausschließlich vom Mann abhängig", loesung: false }
+						    { txt: "ist ausschlie&szlig;lich vom Mann abh&auml;ngig", loesung: false }
 						],
 						listeners:{
 						    select:function(list, model){
@@ -662,7 +663,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -696,7 +697,7 @@ Ext.define('ProVita.view.Main',
 						    },
 						    { txt: "unter 10.000", loesung: false },
 						    { txt: "unter 100.000", loesung: false },
-						    { txt: "deutlich über 100.000", loesung: true },
+						    { txt: "deutlich &uuml;ber 100.000", loesung: true },
 						    { txt: "wird geheim gehalten", loesung: false },
 						    { txt: "ist nicht bekannt", loesung: false }
 						],
@@ -707,7 +708,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -735,15 +736,15 @@ Ext.define('ProVita.view.Main',
 						itemTpl: '{txt}',
 						data: [
 						    { 
-							txt: "Aktive Sterbehilfe wird in Deutschland seit Jahren widersprüchlich diskutiert, momentan ist aktive Sterbehilfe in Deutschland ...", 
+							txt: "Aktive Sterbehilfe wird in Deutschland seit Jahren widerspr&uuml;chlich diskutiert, momentan ist aktive Sterbehilfe in Deutschland ...", 
 							loesung: 2,
 							selectable: false
 						    },
-						    { txt: "nur in Ausnahmefällen erlaubt", loesung: false },
-						    { txt: "auch in Ausnahmefällen verboten", loesung: true },
-						    { txt: "nur vom Arzt durchzuführen", loesung: false },
-						    { txt: "nur im Krankenhaus durchzuführen", loesung: false },
-						    { txt: "ausschließlich Sterbe-Instituten vorbehalten", loesung: false }
+						    { txt: "nur in Ausnahmef&auml;llen erlaubt", loesung: false },
+						    { txt: "auch in Ausnahmef&auml;llen verboten", loesung: true },
+						    { txt: "nur vom Arzt durchzuf&uuml;hren", loesung: false },
+						    { txt: "nur im Krankenhaus durchzuf&uuml;hren", loesung: false },
+						    { txt: "ausschlie&szlig;lich Sterbe-Instituten vorbehalten", loesung: false }
 						],
 						listeners:{
 						    select:function(list, model){
@@ -752,7 +753,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -787,8 +788,8 @@ Ext.define('ProVita.view.Main',
 						    { txt: "das Essen verweigert", loesung: false },
 						    { txt: "nichts mehr zu Trinken anbietet", loesung: false },
 						    { txt: "alle Medikamente verweigert", loesung: false },
-						    { txt: "auf lebensverlängernde Maßnahmen verzichtet", loesung: true },
-						    { txt: "Schmerzmittel überdosiert", loesung: false }
+						    { txt: "auf lebensverl&auml;ngernde Ma&szlig;nahmen verzichtet", loesung: true },
+						    { txt: "Schmerzmittel &uuml;berdosiert", loesung: false }
 						],
 						listeners:{
 						    select:function(list, model){
@@ -797,7 +798,7 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
@@ -825,7 +826,7 @@ Ext.define('ProVita.view.Main',
 						itemTpl: '{txt}',
 						data: [
 						    { 
-							txt: "Laut einer Umfrage möchten 66% der befragten Deutschen nach Möglichkeit zu Hause sterben. Wo sterben tatsächlich die meisten Menschen?", 
+							txt: "Laut einer Umfrage m&ouml;chten 66% der befragten Deutschen nach M&ouml;glichkeit zu Hause sterben. Wo sterben tats&auml;chlich die meisten Menschen?", 
 							loesung: 2,
 							selectable: false
 						    },
@@ -842,14 +843,16 @@ Ext.define('ProVita.view.Main',
 							    return false;
 							}
 							if (model.get('loesung') === true ) {
-							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    Ext.Msg.alert('Gl&uuml;ckwunsch', "Das war richtig!<br/>Weiter geht's ...");
 							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
 							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br />(im Krankenhaus: 50%, im Pflegeheim 25%, zu Hause 20%, im Hospiz 15%)<br /><br />Weiter geht's ...", Ext.emptyFn);
 							}
 							Ext.ComponentQuery.query('#quizResult')[0].setTitle('Dein Ergebnis: ' + ProVita.utils.Global.getQuizTreffer() + ' richtige Antworten von 12 Fragen.<br />Nimm an der ProVita Verlosung teil!');
+							Ext.ComponentQuery.query('#quizResultScore')[0].setValue( ProVita.utils.Global.getQuizTreffer() );
 							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(13, { type: 'slide', direction: 'left' });
+							
 						    }
 						}
 					    }
@@ -858,6 +861,7 @@ Ext.define('ProVita.view.Main',
 				    {
 					// Ergebnis und Verlosung
 					title: 'Quiz',
+					layout: 'fit',
 					items: [
 					    {
 						xtype: 'titlebar',
@@ -865,68 +869,130 @@ Ext.define('ProVita.view.Main',
 						title:'Quiz'
 					    },
 					    {
-						xtype: 'fieldset',
-						itemId: 'quizResult',
-						title: '',
-						instructions: 'Die Anfrage wird verschl&uuml;sselt &uuml;bertragen und keine weiteren Daten Deiner Anfrage gespeichert.<br />Dein Name wird in der Bestenliste und - falls Du gewinnst - auf der ProVita-Homepage veröffentlicht.<br />Jede E-Mail-Adresse nimmt nur einmal an der Verlosung teil.',
-						items: [
+						xtype: 'formpanel',
+						items: 
+						[
 						    {
-							xtype: 'textfield',
-							name : 'name',
-							label: 'Name'
+							xtype: 'fieldset',
+							itemId: 'quizResult',
+							title: '',
+							instructions: 'Die Anfrage wird verschl&uuml;sselt &uuml;bertragen und keine weiteren Daten Deiner Anfrage gespeichert.<br />Dein Name wird in der Bestenliste und - falls Du gewinnst - auf der ProVita-Homepage ver&ouml;ffentlicht.<br />Jede E-Mail-Adresse nimmt nur einmal an der Verlosung teil.',
+							items: [
+							    {
+								xtype: 'textfield',
+								name : 'name',
+								label: 'Name'
+							    },
+							    {
+								xtype: 'emailfield',
+								name : 'email',
+								label: 'Email'
+							    },
+							    {
+								xtype: 'hiddenfield',
+								name : 'score',
+								itemId: 'quizResultScore'
+							    }
+							]
 						    },
 						    {
-							xtype: 'emailfield',
-							name : 'email',
-							label: 'Email'
+							xtype: 'button',
+							text: 'Teilnehmen',
+							ui: 'confirm',
+							handler: function() {
+							    this.up('formpanel').submit({
+								url: 'https://app.provita-stiftung.de/quiz.php',
+								method: 'POST',
+								success: function() {
+								    Ext.Msg.alert('Danke', 'Du nimmst an der Verlosung teil!', Ext.emptyFn);
+								},
+								failure: function() {
+								    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
+								}
+							    });
+							}
 						    }
 						]
-					    },
-					    {
-						xtype: 'button',
-						text: 'Teilnehmen',
-						ui: 'confirm',
-						handler: function() {
-						    this.up('fieldset').submit({
-							url: 'https://sese.de/gewinn.php',
-							method: 'POST',
-							success: function() {
-							    Ext.Msg.alert('Danke', 'Du nimmst an der Verlosung teil!', Ext.emptyFn);
-							}
-						    });
-						}
 					    }
 					]
 				    }
 				]
 			    },                            
 			    {
-                                // infomail
-				xtype: 'container',
-				itemId: 'newsContainer',
-				masked: { xtype: 'loadmask', message: 'Die aktuelle Infomail wird geladen...' },
-				config: {
-				    scrollable: 'true'
-				}
-                            },
+				// infomail
+				xtype: 'panel',
+				layout: 'card',
+				items: 
+				[
+				    {
+					// start
+					title: 'Aktuelle Infomail',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title: 'Aktuelle Infomail'
+					    },
+					    {
+						// infomail
+						itemId: 'newsContainer',
+						cls: 'news',
+						masked: { xtype: 'loadmask', message: 'Die aktuelle Infomail wird geladen...' }
+					    }
+					]
+				    }
+				]
+			    },					    
 			    {
-                                // Nachrichten
-				xtype: 'container',
-				itemId: 'news2Container',
-				masked: { xtype: 'loadmask', message: 'Die Nachrichten werden geladen...' },
-				config: {
-				    scrollable: 'true'
-				}
-                            },
+				// nachrichten
+				xtype: 'panel',
+				layout: 'card',
+				items: 
+				[
+				    {
+					// start
+					title: 'Nachrichten',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title: 'Nachrichten'
+					    },
+					    {
+						// Nachrichten
+						itemId: 'news2Container',
+						cls: 'news',
+						masked: { xtype: 'loadmask', message: 'Die Nachrichten werden geladen...' }
+					    },
+					]
+				    }
+				]
+			    },
 			    {
-                                // Veranstaltungen
-				xtype: 'container',
-				itemId: 'news3Container',
-				masked: { xtype: 'loadmask', message: 'Die Veranstaltungen werden geladen...' },
-				config: {
-				    scrollable: 'true'
-				}
-                            },
+				// Veranstaltungen
+				xtype: 'panel',
+				layout: 'card',
+				items: 
+				[
+				    {
+					// start
+					title: 'Veranstaltungen',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title: 'Veranstaltungen'
+					    },
+					    {
+						// Veranstaltungen
+						itemId: 'news3Container',
+						cls: 'news',
+						masked: { xtype: 'loadmask', message: 'Die Veranstaltungen werden geladen...' },
+					    }
+					]
+				    }
+				]
+			    },
 			    {
 				// info carousel
 				xtype: 'carousel',
@@ -1066,7 +1132,7 @@ Ext.define('ProVita.view.Main',
 					    },
 					    {
 						xtype: 'togglefield',
-						name : 'rückruf',
+						name : 'rueckruf',
 						label: 'Bitte rufen Sie mich zur&uuml;ck!'
 					    },
 					    {
@@ -1083,10 +1149,13 @@ Ext.define('ProVita.view.Main',
 					ui: 'confirm',
 					handler: function() {
 					    this.up('formpanel').submit({
-						url: 'https://sese.de/test.php',
+						url: 'https://app.provita-stiftung.de/kontakt.php',
 						method: 'POST',
-						success: function() {
+						success: function(response) {
 						    Ext.Msg.alert('Danke', 'Deine Anfrage wurde abgeschickt.', Ext.emptyFn);
+						},
+						failure: function(response) {
+						    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
 						}
 					    });
 					}
