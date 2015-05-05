@@ -11,7 +11,6 @@ Ext.define('ProVita.view.Main',
         'Ext.Component',
         'Ext.Panel',
 	'Ext.Carousel',
-//	'ProVita.view.Quiz',
 	'Ext.form.FieldSet',
 	'Ext.field.Email',
 	'Ext.field.Toggle',
@@ -349,23 +348,558 @@ Ext.define('ProVita.view.Main',
 							}
 							if (model.get('loesung') === true ) {
 							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
 							} else  {
 							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
 							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
 							}
-							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(1, { type: 'slide', direction: 'left' });
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(2, { type: 'slide', direction: 'left' });
 						    }
 						}
 					    }
 					]
 				    },
+				    {
+					// frage 2
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "In 2/3 der Welt bekommen Frauen ihr erstes Kind im Durchschnitt ...", 
+							loesung: 1,
+							selectable: false
+						    },
+						    { txt: "Vor dem 20. Lebensjahr", loesung: true },
+						    { txt: "Nach dem 20. Lebensjahr", loesung: false },
+						    { txt: "Nach dem 25. Lebensjahr", loesung: false },
+						    { txt: "Nach dem 30. Lebensjahr", loesung: false },
+						    { txt: "Nach dem 35. Lebensjahr", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(3, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 3
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Beim Ungeborenen sind bis zur 12. Woche der Schwangerschaft bereits vollkommen ausgebildet:", 
+							loesung: 5,
+							selectable: false
+						    },
+						    { txt: "Arme und Beine", loesung: false },
+						    { txt: "Das Herz", loesung: false },
+						    { txt: "Die Leber", loesung: false },
+						    { txt: "Die Nieren", loesung: false },
+						    { txt: "Alle Organe", loesung: true }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(4, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 4
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "In Deutschland werden aktuell Ungeborene mit dem Down-Syndrom (Trisomie 21) von vielen Müttern oder Eltern nicht akzeptiert. Abgetrieben werden aus diesem Grund ...", 
+							loesung: 5,
+							selectable: false
+						    },
+						    { txt: "10% der betroffenen Foeten", loesung: false },
+						    { txt: "30% der betroffenen Foeten", loesung: false },
+						    { txt: "50% der betroffenen Foeten", loesung: false },
+						    { txt: "70% der betroffenen Foeten", loesung: false },
+						    { txt: "90% der betroffenen Foeten", loesung: true }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(5, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 5
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Die meisten Abtreibungen weltweit geschehen aufgrund der Diagnose ...", 
+							loesung: 5,
+							selectable: false
+						    },
+						    { txt: "Das Kind wird ein Zwitter", loesung: false },
+						    { txt: "Das Kind hat keine Arme und Beine", loesung: false },
+						    { txt: "Das Kind kann nach der Geburt nicht überleben", loesung: false },
+						    { txt: "Das Kind hat einen Herzfehler", loesung: false },
+						    { txt: "Das Kind wird ein Mädchen", loesung: true }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(6, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 6
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "In Deutschland diskutiert man seit Jahren über das Thema Abtreibung. Richtig ist ...", 
+							loesung: 4,
+							selectable: false
+						    },
+						    { txt: "In Deutschland ist Abtreibung nur in den ersten 10 Schwangerschaftswochen erlaubt", loesung: false },
+						    { txt: "In Deutschland ist Abtreibung bis zur 23. Schwangerschaftswoche erlaubt", loesung: false },
+						    { txt: "In Deutschland ist Schwangerschaftsabbruch generell erlaubt", loesung: false },
+						    { txt: "In Deutschland ist Schwangerschaftsabbruch generell verboten", loesung: true },
+						    { txt: "In Deutschland ist Schwangerschaftsabbruch noch nie verboten gewesen", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(7, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 7
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Für Frauen, die ihr Kind abgetrieben haben, gilt häufig ...", 
+							loesung: 3,
+							selectable: false
+						    },
+						    { txt: "Sie sind froh, kein Kind versorgen zu müssen", loesung: false },
+						    { txt: "Sie würden das jederzeit noch einmal machen", loesung: false },
+						    { txt: "Sie würden das Geschehene oft gerne wieder rückgängig machen", loesung: true },
+						    { txt: "Sie würden jedem raten es genauso zu machen", loesung: false },
+						    { txt: "Sie finden eine solche Entscheidung ganz alltäglich", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(8, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 8
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Die Wahrscheinlichkeit für eine Frau spontan schwanger zu werden ...", 
+							loesung: 1,
+							selectable: false
+						    },
+						    { txt: "nimmt ab dem 35. Lebensjahr rapide ab", loesung: true },
+						    { txt: "ist bis zum 50. Lebensjahr etwa gleichbleibend", loesung: false },
+						    { txt: "ist zwischen dem 18. und 28. Lebensjahr am niedrigsten", loesung: false },
+						    { txt: "ist vor dem 30. Lebensjahr gering", loesung: false },
+						    { txt: "ist ausschließlich vom Mann abhängig", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(9, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 9
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Die aktuelle von staatlicher Seite angegebene Zahl von Abtreibungen pro Jahr liegt in Deutschland ...", 
+							loesung: 3,
+							selectable: false
+						    },
+						    { txt: "unter 10.000", loesung: false },
+						    { txt: "unter 100.000", loesung: false },
+						    { txt: "deutlich über 100.000", loesung: true },
+						    { txt: "wird geheim gehalten", loesung: false },
+						    { txt: "ist nicht bekannt", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(10, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 10
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Aktive Sterbehilfe wird in Deutschland seit Jahren widersprüchlich diskutiert, momentan ist aktive Sterbehilfe in Deutschland ...", 
+							loesung: 2,
+							selectable: false
+						    },
+						    { txt: "nur in Ausnahmefällen erlaubt", loesung: false },
+						    { txt: "auch in Ausnahmefällen verboten", loesung: true },
+						    { txt: "nur vom Arzt durchzuführen", loesung: false },
+						    { txt: "nur im Krankenhaus durchzuführen", loesung: false },
+						    { txt: "ausschließlich Sterbe-Instituten vorbehalten", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(11, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 11
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Passive Sterbehilfe bedeutet, Menschen das Sterben zu erleichtern, in dem man ihnen ...", 
+							loesung: 4,
+							selectable: false
+						    },
+						    { txt: "das Essen verweigert", loesung: false },
+						    { txt: "nichts mehr zu Trinken anbietet", loesung: false },
+						    { txt: "alle Medikamente verweigert", loesung: false },
+						    { txt: "auf lebensverlängernde Maßnahmen verzichtet", loesung: true },
+						    { txt: "Schmerzmittel überdosiert", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(12, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// frage 12
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						title: 'Quiz',
+						xtype: 'list',
+						height: '100%',
+						itemTpl: '{txt}',
+						data: [
+						    { 
+							txt: "Laut einer Umfrage möchten 66% der befragten Deutschen nach Möglichkeit zu Hause sterben. Wo sterben tatsächlich die meisten Menschen?", 
+							loesung: 2,
+							selectable: false
+						    },
+						    { txt: "Zu Hause", loesung: false },
+						    { txt: "Im Krankenhaus", loesung: true },
+						    { txt: "In Pflegeheimen", loesung: false },
+						    { txt: "Im Hospiz oder einer Palliativ-Station", loesung: false },
+						    { txt: "An anderen Orten", loesung: false }
+						],
+						listeners:{
+						    select:function(list, model){
+							if(model.get('selectable') === false){
+							    list.deselect(model);
+							    return false;
+							}
+							if (model.get('loesung') === true ) {
+							    Ext.Msg.alert('Glückwunsch', "Das war richtig!<br/>Weiter geht's ...");
+							    ProVita.utils.Global.setQuizTreffer(ProVita.utils.Global.getQuizTreffer() + 1);
+							} else  {
+							    var loesung = list.getStore().getAt(list.getStore().getAt(0).get('loesung')).get('txt');
+							    Ext.Msg.alert('Knapp daneben', 'Das war leider die falsche Antwort.<br/><br/>Die richtige Antwort lautet:<br /><span style="font-weight:bold;">'+loesung+"</span><br />(im Krankenhaus: 50%, im Pflegeheim 25%, zu Hause 20%, im Hospiz 15%)<br /><br />Weiter geht's ...", Ext.emptyFn);
+							}
+							Ext.ComponentQuery.query('#quizResult')[0].setTitle('Dein Ergebnis: ' + ProVita.utils.Global.getQuizTreffer() + ' richtige Antworten von 12 Fragen.<br />Nimm an der ProVita Verlosung teil!');
+							Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(13, { type: 'slide', direction: 'left' });
+						    }
+						}
+					    }
+					]
+				    },
+				    {
+					// Ergebnis und Verlosung
+					title: 'Quiz',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						xtype: 'fieldset',
+						itemId: 'quizResult',
+						title: '',
+						instructions: 'Die Anfrage wird verschl&uuml;sselt &uuml;bertragen und keine weiteren Daten Deiner Anfrage gespeichert.<br />Dein Name wird in der Bestenliste und - falls Du gewinnst - auf der ProVita-Homepage veröffentlicht.<br />Jede E-Mail-Adresse nimmt nur einmal an der Verlosung teil.',
+						items: [
+						    {
+							xtype: 'textfield',
+							name : 'name',
+							label: 'Name'
+						    },
+						    {
+							xtype: 'emailfield',
+							name : 'email',
+							label: 'Email'
+						    }
+						]
+					    },
+					    {
+						xtype: 'button',
+						text: 'Teilnehmen',
+						ui: 'confirm',
+						handler: function() {
+						    this.up('fieldset').submit({
+							url: 'https://sese.de/gewinn.php',
+							method: 'POST',
+							success: function() {
+							    Ext.Msg.alert('Danke', 'Du nimmst an der Verlosung teil!', Ext.emptyFn);
+							}
+						    });
+						}
+					    }
+					]
+				    }
 				]
 			    },                            
-/*			    {
-                                // quiz card
-				xtype: 'quiz'
-                            },                            
-*/
 			    {
                                 // infomail
 				xtype: 'container',

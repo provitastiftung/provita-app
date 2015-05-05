@@ -32,7 +32,8 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "ProVita": "app"
+  "ProVita": "app",
+  "ProVita.utils.Global": "app/utils/global.js"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -657,11 +658,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "ProVita.model.Quizantwort": [],
-  "ProVita.model.Quizfrage": [],
-  "ProVita.model.Quizliste": [],
-  "ProVita.view.Main": [],
-  "ProVita.view.Quiz": []
+  "ProVita.utils.Global": [],
+  "ProVita.view.Main": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1385,15 +1383,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "ProVita.model.Quizantwort": [],
-  "ProVita.model.Quizfrage": [],
-  "ProVita.model.Quizliste": [],
+  "ProVita.utils.Global": [
+    "widget.global"
+  ],
   "ProVita.view.Main": [
     "widget.mainPage"
-  ],
-  "ProVita.view.Quiz": [
-    "widget.main",
-    "widget.quiz"
   ]
 });
 
