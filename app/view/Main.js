@@ -910,7 +910,49 @@ Ext.define('ProVita.view.Main',
 								    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
 								}
 							    });
+							    Ext.Ajax.request({
+								url: 'https://app.provita-stiftung.de/quiz.php',
+								success : function(response) {
+								    var json = Ext.util.JSON.decode(response.responseText)
+								    var highscore = "Die Bestenliste<br /><br />";
+								    Ext.Array.each(json.highscore, function(name, index) {
+									highscore = highscore + name.name + " (" + name.score + " richtige Antworten)<br />";
+									
+								    });
+								    Ext.ComponentQuery.query('#quizHighscore')[0].setTitle(highscore);
+								    Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(14, { type: 'slide', direction: 'left' });
+								},
+								failure : function(response) {  
+								    Ext.Msg.alert('Error', 'Die Bestenliste konnte leider nicht geladen werden.', Ext.emptyFn);            
+								    Ext.ComponentQuery.query('#quizContainer')[0].animateActiveItem(14, { type: 'slide', direction: 'left' });
+								}
+							    });
 							}
+						    }
+						]
+					    }
+					]
+				    },
+				    {
+					// Ergebnis und Verlosung
+					title: 'Quiz',
+					layout: 'fit',
+					items: [
+					    {
+						xtype: 'titlebar',
+						docked: 'top',
+						title:'Quiz'
+					    },
+					    {
+						xtype: 'formpanel',
+						items: 
+						[
+						    {
+							xtype: 'fieldset',
+							itemId: 'quizHighscore',
+							title: '',
+							instructions: 'Der Gewinner wird per E-Mail benachricht und der Name auf der ProVita-Homepage ver&ouml;ffentlicht.',
+							items: []
 						    }
 						]
 					    }
