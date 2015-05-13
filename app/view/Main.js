@@ -80,18 +80,32 @@ Ext.define('ProVita.view.Main',
 						break;
 					    case 2:
 						Ext.Ajax.request({
-						    //local path of your html file
 						    url: 'http://www.provita-stiftung.de/appjson.cgi',
+						    useDefaultXhrHeader: false,
+						    disableCaching: false,
+						    method: 'GET',
 						    success : function(response) {
 							var json = Ext.util.JSON.decode(response.responseText)
-							//Ext.Msg.alert('News', json.veranstaltungen[0].caption, Ext.emptyFn);            
-							var c = Ext.ComponentQuery.query("#newsContainer")[0];
-							c.setHtml(json.aktuelles.main);
-							c.unmask();
+							var c = Ext.ComponentQuery.query("#newsCards")[0];
+							var p0 = Ext.create('Ext.Panel', 
+							    {
+								title: 'Aktuelle Infomail',
+								scrollable: 'vertical',
+								items: [
+								    {
+			    						title: 'Aktuelle Infomail',
+									docked: 'top',
+									xtype: 'titlebar' 
+								     }
+								],
+								html: json.aktuelles.main
+							    });
+							c.add(p0);
+							c.animateActiveItem(1, { type: 'pop' });
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
-							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden.', Ext.emptyFn);            
+							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden. '+response.responseText, Ext.emptyFn);            
 							var c = Ext.ComponentQuery.query("#newsContainer")[0];
 							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
 							c.unmask();
@@ -102,17 +116,32 @@ Ext.define('ProVita.view.Main',
 						break;
 					    case 3:
 						Ext.Ajax.request({
-						    //local path of your html file
 						    url: 'http://www.provita-stiftung.de/appjson.cgi',
+						    useDefaultXhrHeader: false,
+						    disableCaching: false,
+						    method: 'GET',
 						    success : function(response) {
 							var json = Ext.util.JSON.decode(response.responseText)
-							var c = Ext.ComponentQuery.query("#news2Container")[0];
 							var html = '';
 							Ext.Array.each(json.nachrichten, function(nachricht, index, nachrichtenItSelf) {
-							    html = html + '<h1>' + nachricht.caption + '</h1>' + nachricht.about + nachricht.main;
+							    html = html + '<h1>' + nachricht.caption + '</h1>' + nachricht.about + nachricht.main + "<br />";
 							});
-							c.setHtml(html);
-							c.unmask();
+							var c = Ext.ComponentQuery.query("#news2Cards")[0];
+							var p0 = Ext.create('Ext.Panel', 
+							    {
+								title: 'Nachrichten',
+								scrollable: 'vertical',
+								items: [
+								    {
+			    						title: 'Nachrichten',
+									docked: 'top',
+									xtype: 'titlebar' 
+								     }
+								],
+								html: html
+							    });
+							c.add(p0);
+							c.animateActiveItem(1, { type: 'pop' });
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
@@ -127,18 +156,32 @@ Ext.define('ProVita.view.Main',
 						break;
 					    case 4:
 						Ext.Ajax.request({
-						    //local path of your html file
 						    url: 'http://www.provita-stiftung.de/appjson.cgi',
+						    useDefaultXhrHeader: false,
+						    disableCaching: false,
+						    method: 'GET',
 						    success : function(response) {
 							var json = Ext.util.JSON.decode(response.responseText)
-							//Ext.Msg.alert('News', json.veranstaltungen[0].caption, Ext.emptyFn);            
-							var c = Ext.ComponentQuery.query("#news3Container")[0];
 							var html = '';
 							Ext.Array.each(json.veranstaltungen, function(veranstaltung, index, veranstaltungenItSelf) {
 							    html = html + '<h1>' + veranstaltung.caption + '</h1>' + veranstaltung.about + veranstaltung.main;
 							});
-							c.setHtml(html);
-							c.unmask();
+							var c = Ext.ComponentQuery.query("#news3Cards")[0];
+							var p0 = Ext.create('Ext.Panel', 
+							    {
+								title: 'Veranstaltungen',
+								scrollable: 'vertical',
+								items: [
+								    {
+			    						title: 'Veranstaltungen',
+									docked: 'top',
+									xtype: 'titlebar' 
+								     }
+								],
+								html: html
+							    });
+							c.add(p0);
+							c.animateActiveItem(1, { type: 'pop' });
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
@@ -964,6 +1007,8 @@ Ext.define('ProVita.view.Main',
 				// infomail
 				xtype: 'panel',
 				layout: 'card',
+				cls: 'news',
+				itemId: 'newsCards',
 				items: 
 				[
 				    {
@@ -989,6 +1034,8 @@ Ext.define('ProVita.view.Main',
 				// nachrichten
 				xtype: 'panel',
 				layout: 'card',
+				cls: 'news',
+				itemId: 'news2Cards',
 				items: 
 				[
 				    {
@@ -1004,6 +1051,7 @@ Ext.define('ProVita.view.Main',
 						// Nachrichten
 						itemId: 'news2Container',
 						cls: 'news',
+						scrollable: 'vertical',
 						masked: { xtype: 'loadmask', message: 'Die Nachrichten werden geladen...' }
 					    },
 					]
@@ -1014,6 +1062,8 @@ Ext.define('ProVita.view.Main',
 				// Veranstaltungen
 				xtype: 'panel',
 				layout: 'card',
+				cls: 'news',
+				itemId: 'news3Cards',
 				items: 
 				[
 				    {

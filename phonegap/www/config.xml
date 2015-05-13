@@ -24,8 +24,6 @@
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
-    <!--<gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />-->
-    <!--<gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />-->
     <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
     <!--<gap:plugin name="com.adobe.plugins.PushPlugin" />-->
     <icon src="icon.png" />
