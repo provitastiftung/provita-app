@@ -1272,7 +1272,7 @@ Ext.define('ProVita.view.Main',
 						    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
 						}
 					    });
-					    this.up('formpanel').reset();
+					    //this.up('formpanel').reset();
 					    /*
 					    this.up('formpanel').submit({
 						url: 'https://app.provita-stiftung.de/kontakt.php',
