@@ -57,7 +57,7 @@ break;case "android":f=/(Android|Silk)/.test(e);break;case "blackberry":f=/(Blac
 if(g){if(!k(g)||k(j))continue;b.theme||(b.theme={});b.theme.name||(b.theme.name=n||"Default")}document.write('\x3clink rel\x3d"stylesheet" href\x3d"'+c+'"\x3e')}a=0;for(h=m.length;a<h;a++)c=m[a],"string"!=typeof c&&(g=c.platform,j=c.exclude,c=c.path),(!g||k(g)&&!k(j))&&document.write('\x3cscript src\x3d"'+c+'"\x3e\x3c/script\x3e')}})(this);
 Ext.blink({id:"f86fa84c-e3cd-4414-80d1-1d354925254e",js:[{path:"phonegap.js",remote:!0},{path:"app.js",update:"delta"}],css:[{path:"resources/css/app.css",update:"delta"},{path:"resources/css/provita.css"}]});</script>
 </head>
-<body>
+<body onload="init();">
     <div id="appLoadingIndicator">
         <div></div>
         <div></div>
@@ -65,3 +65,42 @@ Ext.blink({id:"f86fa84c-e3cd-4414-80d1-1d354925254e",js:[{path:"phonegap.js",rem
     </div>
 </body>
 </html>
+
+<script>
+function initPushwoosh()
+{
+    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+ 
+    //set push notifications handler
+    document.addEventListener('push-notification', function(event) {
+        var title = event.notification.title;
+        var userData = event.notification.userdata;
+                                 
+        if(typeof(userData) != "undefined") {
+            console.warn('user data: ' + JSON.stringify(userData));
+        }
+                                     
+        alert(title);
+    });
+ 
+    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+    pushNotification.onDeviceReady({ projectid: "274178976164", pw_appid : "B5C0D-54773" });
+ 
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var pushToken = status;
+            console.warn('push token: ' + pushToken);
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+        }
+    );
+}    
+
+function init() {
+    document.addEventListener("deviceready", initPushwoosh, true);
+ 
+    //rest of the code
+}
+</script>

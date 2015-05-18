@@ -13,8 +13,8 @@ Ext.application({
     name: 'ProVita',
 
     requires: [
-      'Ext.MessageBox',
-	'ProVita.utils.Global'    
+	'Ext.MessageBox',
+	'ProVita.utils.Global'
     ],
 
     views: [
