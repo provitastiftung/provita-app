@@ -13,6 +13,7 @@ Ext.define('ProVita.view.Main',
 	'Ext.Carousel',
 	'Ext.form.FieldSet',
 	'Ext.field.Email',
+	'Ext.field.Number',
 	'Ext.field.Toggle',
 	'Ext.field.Hidden'
 	//'Ext.device.Push'
@@ -105,7 +106,7 @@ Ext.define('ProVita.view.Main',
 						    },
 						    failure : function(response) {  
 							var text = response.responseText;
-							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden. '+response.responseText, Ext.emptyFn);            
+							Ext.Msg.alert('Error', 'Die aktuelle Infomail konnte leider nicht geladen werden. ', Ext.emptyFn);            
 							var c = Ext.ComponentQuery.query("#newsContainer")[0];
 							c.setHtml('<p>Die aktuelle Infomail konnte leider nicht geladen werden.</p>');
 							c.unmask();
@@ -943,6 +944,20 @@ Ext.define('ProVita.view.Main',
 							text: 'Teilnehmen',
 							ui: 'confirm',
 							handler: function() {
+							    Ext.Ajax.request({
+								url: 'https://app.provita-stiftung.de/quiz.php',
+								params: this.up('formpanel').getValues(),
+								useDefaultXhrHeader: false,
+								disableCaching: false,
+								method: 'POST',
+								success : function(response) {
+								    Ext.Msg.alert('Danke', 'Du nimmst an der Verlosung teil!', Ext.emptyFn);
+								},
+								failure : function(response) {  
+								    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
+								}
+							    });
+							    /*
 							    this.up('formpanel').submit({
 								url: 'https://app.provita-stiftung.de/quiz.php',
 								method: 'POST',
@@ -953,8 +968,12 @@ Ext.define('ProVita.view.Main',
 								    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
 								}
 							    });
+							    */
 							    Ext.Ajax.request({
 								url: 'https://app.provita-stiftung.de/quiz.php',
+								useDefaultXhrHeader: false,
+								disableCaching: false,
+								method: 'POST',
 								success : function(response) {
 								    var json = Ext.util.JSON.decode(response.responseText)
 								    var highscore = "Die Bestenliste<br /><br />";
@@ -1218,7 +1237,7 @@ Ext.define('ProVita.view.Main',
 						label: 'Email'
 					    },
 					    {
-						xtype: 'textfield',
+						xtype: 'numberfield',
 						name : 'telefon',
 						label: 'Telefon'
 					    },
@@ -1240,6 +1259,21 @@ Ext.define('ProVita.view.Main',
 					text: 'Absenden',
 					ui: 'confirm',
 					handler: function() {
+					    Ext.Ajax.request({
+						url: 'https://app.provita-stiftung.de/kontakt.php',
+						params: this.up('formpanel').getValues(),
+						useDefaultXhrHeader: false,
+						disableCaching: false,
+						method: 'POST',
+						success : function(response) {
+						    Ext.Msg.alert('Danke', 'Deine Anfrage wurde abgeschickt.', Ext.emptyFn);
+						},
+						failure : function(response) {  
+						    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
+						}
+					    });
+					    this.up('formpanel').reset();
+					    /*
 					    this.up('formpanel').submit({
 						url: 'https://app.provita-stiftung.de/kontakt.php',
 						method: 'POST',
@@ -1250,6 +1284,7 @@ Ext.define('ProVita.view.Main',
 						    Ext.Msg.alert('Fehler', 'Die Anfrage konnte leider nicht abgeschickt werden.', Ext.emptyFn);
 						}
 					    });
+					    */
 					}
 				    }
 				]				
